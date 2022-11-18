@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: vprodb
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,9 +18,9 @@ spec:
         - name: vprodb
           image: alvinotutu/vprofiledb:V1
           args:
-            - "ignore-db-dir=lost+found"
+            - "--ignore-db-dir=lost+found"
           volumeMounts:
-            - mountpath: /var/lib/mysql
+            - mountPath: /var/lib/mysql
               name: vpro-db-data
           ports:
             - name: vprodb-port
